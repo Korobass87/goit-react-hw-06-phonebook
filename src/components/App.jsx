@@ -13,6 +13,7 @@ export default function App() {
   const contacts = useSelector(state => state.contacts);
   const firstRen = useRef(false);
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
