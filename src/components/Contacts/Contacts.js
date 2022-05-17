@@ -1,7 +1,7 @@
 import './Contacts.scss';
 import { useDispatch } from 'react-redux';
-import { delContact } from 'redux/actions';
-
+import { delContact, showModal, idForEdit } from 'redux/actions';
+import { BiPencil } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
 
 export default function Contacts() {
@@ -11,6 +11,10 @@ export default function Contacts() {
     cont.name.toLowerCase().includes(filter.toLowerCase())
   );
   const dispatch = useDispatch();
+  const modal = id => {
+    dispatch(showModal());
+    dispatch(idForEdit(id));
+  };
 
   return (
     <ul className="contacts-list">
@@ -19,12 +23,17 @@ export default function Contacts() {
           <p className="contacts-text">
             {name}: {number}
           </p>
-          <button
-            className="contacts-button"
-            onClick={() => dispatch(delContact(id))}
-          >
-            Delete
-          </button>
+          <div className="button-wrap">
+            <button
+              className="contacts-button"
+              onClick={() => dispatch(delContact(id))}
+            >
+              Delete
+            </button>
+            <button className="edit-button" onClick={() => modal(id)}>
+              <BiPencil />
+            </button>
+          </div>
         </li>
       ))}
     </ul>

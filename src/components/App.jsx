@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Phonebook from './Phonebook/Phonebook';
 import Contacts from './Contacts/Contacts';
 import Filter from './Filter/Filter';
@@ -11,11 +11,9 @@ import EditForm from './EditForm/EditForm';
 
 export default function App() {
   const contacts = useSelector(state => state.contacts);
+  const modal = useSelector(state => state.modal);
   const firstRen = useRef(false);
   const dispatch = useDispatch();
-  // eslint-disable-next-line no-unused-vars
-  const [modal, setModal] = useState(false);
-
   useEffect(() => {
     if (firstRen.current) {
       localStorage.setItem('contacts', JSON.stringify(contacts));
